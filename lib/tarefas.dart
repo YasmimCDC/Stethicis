@@ -6,10 +6,10 @@ class TarefaScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tarefa'),
+        title: Text('Tarefas'),
       ),
       body: Container(
-        child: Text('Parabéns'),
+        child: Text('Parabéns, você concluiu todas as suas tarefas'),
       ),
     );
   }
