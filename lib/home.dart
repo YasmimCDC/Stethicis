@@ -4,7 +4,6 @@ import 'package:stethicis/agenda.dart';
 
 class HomeScreen extends StatelessWidget {
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,27 +19,39 @@ class HomeScreen extends StatelessWidget {
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center, // Horizontal
-            mainAxisSize: MainAxisSize.max, // Tamanho da coluna na vertical
+            mainAxisSize: MainAxisSize.min, // Tamanho da coluna na vertical
             mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Vertical
 
             children: <Widget>[
               Text('Stethicis', style: GoogleFonts.yesteryear(
                   textStyle: TextStyle(
-                    fontSize: 90.0,
+                    fontSize: 100.0,
                     color: Colors.white,
                   ),
               ),
             ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 200.0),
+                child: Text('Sua agenda virtual', style: GoogleFonts.salsa(
+                              textStyle: TextStyle(
+                              fontSize: 25.0,
+                              color: Colors.white,
+                              )
+                            )
+                )
+            ),
               OutlineButton(
-
+            
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => AgendaScreen()));
+                  
+                    Navigator.push(context, _createRoute());
                   },
+
                 child: Padding(
                   padding: EdgeInsets.all(14.0),
-                   child:Text('Ver agenda', style: TextStyle(
+                    child:Text('O que vamos fazer hoje?', style: TextStyle(
                     color: Colors.white,
-                    fontSize: 25.0,
+                    fontSize: 20.0,
                 ),
                 ),
                 ),
@@ -54,4 +65,21 @@ class HomeScreen extends StatelessWidget {
         ),
       );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>  AgendaScreen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 3.0);
+      var end = Offset.zero;
+      var tween = Tween(begin: begin, end: end);
+      var offsetAnimation = animation.drive(tween);
+
+  return SlideTransition(
+    position: offsetAnimation,
+    child: child,
+  );
+  },
+  );
 }

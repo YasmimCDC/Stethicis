@@ -35,7 +35,7 @@ class _AgendaScreenState extends State<AgendaScreen>{
               content: Form(
                 key: key,
                 child: TextFormField(
-                  initialValue: 'nome',
+                  initialValue: 'Tarefa',
                   onSaved: (value){
                     widget.lista.add(value);
                   },
